@@ -56,6 +56,15 @@ function onFileDrop(evt) {
 	reader.readAsArrayBuffer(droppedFiles[0]);
 }
 
+
+/**
+* called when the song is complete
+*/
+function onEnded() {
+	playing = false;
+    drawEndScreen();
+}
+
 /**
 * Called from onFileDrop
 */
@@ -74,21 +83,27 @@ function onDroppedFileLoaded(data) {
 }
 
 function startSound() {
+	setupGame();
+
 	var source  = audioContext.createBufferSource();
 	source.buffer = audioBuffer;
 	source.connect(lineOut.destination);
+	source.onended = onEnded;
 	source.start(2);
 	playing = true;
 }
 
 function startDefaultSound(){
+	setupGame();
+
     WebAudiox.loadBuffer(audioContext, 'unrequited.mp3', function(buffer){
         // init AudioBufferSourceNode
         var source  = audioContext.createBufferSource();
         source.buffer  = buffer;
         source.connect(lineOut.destination);
+        source.onended = onEnded;
         // start the sound now
-        source.start(2);
+        source.start(0);
     });
     playing = true;
 }
@@ -181,4 +196,14 @@ function exampleEqualizer() {
 
     // put the sound in the canvas
     analyser2canvas.update();
+}
+
+/**
+* draw ending screen
+*/
+function drawEndScreen() {
+	clearRectangle(0, 0, screenWidth, screenHeight);
+	var white = makeColor(1,1,1,1)
+	fillText("Your score is: " + player.score, screenWidth/4,screenHeight/4, white, "40px sans-serif");
+    fillText("Drag another music file or press enter to play again.", screenWidth/4,screenHeight/4 + 100, white, "40px sans-serif");
 }

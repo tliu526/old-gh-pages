@@ -17,18 +17,18 @@ function onSetup() {
     
     document.addEventListener('drop', onDocumentDrop, false);
     document.addEventListener('dragover', onDocumentDragOver, false);
-
+/*
     setupSound();
     player = createPlayer(screenWidth/2,screenHeight/2);
     setupPlatforms();
-    
+*/  
     drawTitleScreen();
 }
 
 // When a key is pushed
 function onKeyStart(key) {
     if(key == LEFT)
-        player.xVel = -1*X_VEL;
+        player.xVel = -1*X_VEL + X_SPEED;
     if(key == RIGHT)
         player.xVel = X_VEL;
     if(key == UP && onGround){
@@ -74,12 +74,12 @@ function onDocumentDrop(evt) {
     onFileDrop(evt);
 }
 
-function resetGame() {
+function setupGame() {
     if(!playing){
+        clearRectangle(0, 0, screenWidth, screenHeight);
         setupSound();
         player = createPlayer(screenWidth/2,screenHeight/2);
         setupPlatforms();
-        playing = true;
     }
 }
 
