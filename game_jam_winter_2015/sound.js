@@ -82,7 +82,7 @@ function startSound() {
 }
 
 function startDefaultSound(){
-    WebAudiox.loadBuffer(audioContext, 'tliu526.github.io/game_jam_winter_2015/go.wav', function(buffer){
+    WebAudiox.loadBuffer(audioContext, 'unrequited.mp3', function(buffer){
         // init AudioBufferSourceNode
         var source  = audioContext.createBufferSource();
         source.buffer  = buffer;
