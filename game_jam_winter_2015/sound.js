@@ -84,7 +84,7 @@ function onDroppedFileLoaded(data) {
 
 function startSound() {
 	setupGame();
-
+	fillText("Loading track...", screenWidth/4,screenHeight/4 + 200, makeColor(1,1,1,1), "40px sans-serif");
 	var source  = audioContext.createBufferSource();
 	source.buffer = audioBuffer;
 	source.connect(lineOut.destination);
