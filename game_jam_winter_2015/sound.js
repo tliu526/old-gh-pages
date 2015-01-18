@@ -96,15 +96,15 @@ function startSound() {
 function startDefaultSound(){
 	setupGame();
 	fillText("Loading track...", screenWidth/4,screenHeight/4 + 200, makeColor(1,1,1,1), "40px sans-serif");
-    WebAudiox.loadBuffer(audioContext, 'unrequited.mp3', function(buffer){
+    WebAudiox.loadBuffer(audioContext, 'point_of_departure.mp3', function(buffer){
         // init AudioBufferSourceNode
         var source  = audioContext.createBufferSource();
         source.buffer  = buffer;
         source.connect(lineOut.destination);
         source.onended = onEnded;
         // start the sound now
-        source.start(2);
         playing = true;
+        source.start(0);
     });
     
 }

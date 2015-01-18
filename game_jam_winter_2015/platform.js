@@ -30,7 +30,7 @@ function createPlatform(x, y){
 }
 
 function setupPlatforms(){
-	for(var i = 0; i <screenWidth; i+= 200){
+	for(var i = 0; i <screenWidth*6; i+= 200){
 		createPlatform(i,screenHeight-200)
 	}
 }
