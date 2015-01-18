@@ -21,12 +21,8 @@ var audioBuffer;
 // Beat Detector from WebAudiox
 var beatDetector;
 
-//the time of the last platform
-var timeLastPlatform;
-var canPlacePlatform;
-
 //called in game.js onSetup()
-function setupSound(url) {
+function setupSound() {
 	// Create WebAudio API context
     audioContext = new AudioContext();
 
@@ -40,8 +36,6 @@ function setupSound(url) {
 	
     // create the object
     analyser2canvas = new WebAudiox.Analyser2Canvas(analyzer, canvas);
-
-    canPlacePlatform = true;
 
     beatDetector = new WebAudiox.AnalyserBeatDetector(analyzer, onBeat);
 }
@@ -88,12 +82,11 @@ function startSound() {
 }
 
 function startDefaultSound(){
-    WebAudiox.loadBuffer(audioContext, 'go.wav', function(buffer){
+    WebAudiox.loadBuffer(audioContext, 'tliu526.github.io/game_jam_winter_2015/go.wav', function(buffer){
         // init AudioBufferSourceNode
         var source  = audioContext.createBufferSource();
-        source.buffer   = buffer;
+        source.buffer  = buffer;
         source.connect(lineOut.destination);
-
         // start the sound now
         source.start(2);
     });

@@ -49,7 +49,7 @@ function updatePlayer(){
 	player.x += player.xVel - X_SPEED;
 	player.y += player.yVel;
 
-	console.log(player.yVel);
+	//console.log(player.yVel);
 
 	checkDeath();
 
