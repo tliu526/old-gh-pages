@@ -202,7 +202,6 @@ function exampleEqualizer() {
 * draw ending screen
 */
 function drawEndScreen() {
-	clearRectangle(0, 0, screenWidth, screenHeight);
 	var white = makeColor(1,1,1,1)
 	fillText("Your score is: " + player.score, screenWidth/4,screenHeight/4, white, "40px sans-serif");
     fillText("Drag another music file or press enter to play again.", screenWidth/4,screenHeight/4 + 100, white, "40px sans-serif");
