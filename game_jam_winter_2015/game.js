@@ -8,6 +8,9 @@ var LEFT = 37;
 var UP = 38;
 var RIGHT = 39;
 var DOWN = 40;
+var ENTER = 13;
+
+var playing = false;
 
 // When setup happens...
 function onSetup() {
@@ -15,9 +18,11 @@ function onSetup() {
     document.addEventListener('drop', onDocumentDrop, false);
     document.addEventListener('dragover', onDocumentDragOver, false);
 
-    setupSound('no_church.m4a');
+    setupSound();
     player = createPlayer(screenWidth/2,screenHeight/2);
     setupPlatforms();
+    
+    drawTitleScreen();
 }
 
 // When a key is pushed
@@ -31,6 +36,10 @@ function onKeyStart(key) {
         player.y -= 1;
         onGround = false;
     }
+    if(key == ENTER && !playing){
+        startDefaultSound();
+    }
+
 }
 
 function onKeyEnd(key){
@@ -42,12 +51,13 @@ function onKeyEnd(key){
 
 // Called 30 times or more per second
 function onTick() {
-    clearRectangle(0, 0, screenWidth, screenHeight);    
-    
-    updateSound();
-    updateBackground();
-    updatePlatforms();
-    updatePlayer();
+    if(playing){
+        clearRectangle(0, 0, screenWidth, screenHeight);    
+        updateSound();
+        updateBackground();
+        updatePlatforms();
+        updatePlayer();
+    }
     //exampleEqualizer();
 }
 
@@ -62,4 +72,22 @@ function onDocumentDrop(evt) {
     evt.stopPropagation();
     evt.preventDefault();
     onFileDrop(evt);
+}
+
+function resetGame() {
+    if(!playing){
+        setupSound();
+        player = createPlayer(screenWidth/2,screenHeight/2);
+        setupPlatforms();
+        playing = true;
+    }
+}
+
+//draws instructions
+function drawTitleScreen() {
+    clearRectangle(0, 0, screenWidth, screenHeight);
+    var white = makeColor(1,1,1,1)
+    fillText("Soundscape", screenWidth/4,screenHeight/4, white, "bold 120px sans-serif");
+    fillText("Use your arrow keys to move, avoiding the frequency columns.", screenWidth/4,screenHeight/4 + 100, white, "40px sans-serif");
+    fillText("Drag a music file onto the screen to begin, or press enter for the default track.", screenWidth/4,screenHeight/4 + 200, white, "40px sans-serif");
 }

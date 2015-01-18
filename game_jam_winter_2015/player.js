@@ -68,7 +68,15 @@ function checkDeath(){
 
 function drawPlayer(){
 	fillRectangle(player.x,player.y,PLAYER_WIDTH,PLAYER_HEIGHT, makeColor(1,1,1,1));
-	fillText(player.score, 25, 50, makeColor(1,1,1,1), "bold 40px sans-serif");
+
+	var textColor;
+	if(onFire){
+		textColor = makeColor(1,0,0,1);
+	}
+	else{
+		textColor = makeColor(1,1,1,1);
+	}
+	fillText(player.score, 25, 50, textColor, "bold 40px sans-serif");
 }
 
 function checkCollision(){

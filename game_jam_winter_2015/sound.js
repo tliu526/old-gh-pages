@@ -37,18 +37,6 @@ function setupSound(url) {
     analyzer = audioContext.createAnalyser();
     analyzer.connect(lineOut.destination);
     lineOut.destination = analyzer;
-	/*
-    // load a sound and play it immediately
-    WebAudiox.loadBuffer(audioContext, url, function(buffer){
-        // init AudioBufferSourceNode
-        var source  = audioContext.createBufferSource();
-        source.buffer   = buffer;
-        source.connect(lineOut.destination);
-
-        // start the sound now
-        source.start(0);
-    });
-	*/
 	
     // create the object
     analyser2canvas = new WebAudiox.Analyser2Canvas(analyzer, canvas);
@@ -93,11 +81,24 @@ function onDroppedFileLoaded(data) {
 
 function startSound() {
 	var source  = audioContext.createBufferSource();
-		source.buffer = audioBuffer;
-		source.connect(lineOut.destination);
-		source.start(0.0);
-	}
+	source.buffer = audioBuffer;
+	source.connect(lineOut.destination);
+	source.start(2);
+	playing = true;
+}
 
+function startDefaultSound(){
+    WebAudiox.loadBuffer(audioContext, 'go.wav', function(buffer){
+        // init AudioBufferSourceNode
+        var source  = audioContext.createBufferSource();
+        source.buffer   = buffer;
+        source.connect(lineOut.destination);
+
+        // start the sound now
+        source.start(2);
+    });
+    playing = true;
+}
 
 /**
 * Called when a beat is detected
