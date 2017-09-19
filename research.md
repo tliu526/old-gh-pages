@@ -13,6 +13,6 @@ My full thesis can be viewed and downloaded [here](https://unbound.williams.edu/
 A draft of our work presented at the Conference of Complex Systems 2017 can be found [here]({{site.baseurl}}/pdfs/ireg-paper-draft.pdf).
 
 
-### Curling Number
+### Curling Number Conjecture
 
 More to come.
